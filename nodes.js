@@ -1,30 +1,35 @@
 'use strict'
 
-const {random} = require('./util')
+const random = require('./util')
 
 const names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
-class Node {
-    constructor(node, value, neighbours) {
-        this.node = node,
-        this.value = value,
-        this.neighbours = neighbours
-    }
+function Node () {
+
 }
 
-Node.prototype.generateNetwork = () => {
-    let network
+Node.prototype.create = function create(node, value, neighbours, x, y) {
+    this.node = node,
+    this.coordinates.x = x
+    this.coordinates.y = y
+    this.value = value
+    return this
+}
+
+Node.prototype.generateNetwork = function generateNetwork() {
+    let network = []
     names.map(key => {
-        network.push({
+        network.push(
+        {
             node: key,
-            value: random(5,50)
+            value: random(5,50),
+            coordinates: {
+                x : random(0,800),
+                y : random(0,600)
+            }
         })
     })
     return network
-}
-
-Node.prototype.generateLink = () => {
-    
 }
 
 module.exports = Node
